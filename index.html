@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="container py-4">
+
+  <h2 class="text-center mb-4">Public Distribution System</h2>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="card shadow p-4 mx-auto" style="max-width:400px;">
+    <h4 class="mb-3">Login</h4>
+    <div class="mb-3">
+      <label class="form-label">Role</label>
+      <select id="role" class="form-select">
+        <option value="admin">Admin</option>
+        <option value="dealer">Dealer</option>
+        <option value="beneficiary">Beneficiary</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Ration Card</label>
+      <input type="text" id="rationCard" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" id="password" class="form-control">
+    </div>
+    <button class="btn btn-primary w-100" onclick="login()">Login</button>
+    <div id="loginMsg" class="mt-2 text-danger"></div>
+  </div>
+
+  <!-- Dashboards -->
+  <div id="adminDashboard" class="dashboard">
+    <h3>Admin Dashboard</h3>
+    <button class="btn btn-danger mb-3" onclick="logout()">Logout</button>
+    <h5>Stock</h5>
+    <ul id="adminStockList" class="list-group mb-3"></ul>
+    <form class="row g-2 mb-3" onsubmit="addStock(event)">
+      <div class="col-md-4"><input id="stockItem" class="form-control" placeholder="Item"></div>
+      <div class="col-md-4"><input id="stockQty" type="number" class="form-control" placeholder="Quantity"></div>
+      <div class="col-md-4"><button class="btn btn-success w-100">Add</button></div>
+    </form>
+    <h5>Feedback</h5>
+    <ul id="feedbackList" class="list-group"></ul>
+  </div>
+
+  <div id="dealerDashboard" class="dashboard">
+    <h3>Dealer Dashboard</h3>
+    <button class="btn btn-danger mb-3" onclick="logout()">Logout</button>
+    <h5>Stock</h5>
+    <ul id="dealerStockList" class="list-group mb-3"></ul>
+    <form class="row g-2" onsubmit="distribute(event)">
+      <div class="col-md-4"><input id="beneficiaryCard" class="form-control" placeholder="Beneficiary Ration Card"></div>
+      <div class="col-md-4"><select id="distItem" class="form-select"></select></div>
+      <div class="col-md-2"><input id="distQty" type="number" class="form-control" placeholder="Qty"></div>
+      <div class="col-md-2"><button class="btn btn-primary w-100">Distribute</button></div>
+    </form>
+    <div id="distMsg" class="mt-2 text-success"></div>
+  </div>
+
+  <div id="beneficiaryDashboard" class="dashboard">
+    <h3>Beneficiary Dashboard</h3>
+    <button class="btn btn-danger mb-3" onclick="logout()">Logout</button>
+    <h5>Stock</h5>
+    <ul id="beneficiaryStockList" class="list-group mb-3"></ul>
+    <h5>Feedback</h5>
+    <form onsubmit="sendFeedback(event)" class="card p-3">
+      <select id="rating" class="form-select mb-2">
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Good</option>
+        <option value="3">3 - Average</option>
+        <option value="2">2 - Poor</option>
+        <option value="1">1 - Very Poor</option>
+      </select>
+      <textarea id="comment" class="form-control mb-2" placeholder="Comment"></textarea>
+      <button class="btn btn-secondary">Submit</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
